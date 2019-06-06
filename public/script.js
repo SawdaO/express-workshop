@@ -8,12 +8,12 @@ function ready () {
     getBlogposts('/get-posts');
 
     // send posts to server
-    var form = document.querySelector('form');
-    form.addEventListener('submit', function (event) {
+    let form = document.querySelector('form');
+    form.addEventListener('submit', (event)=> {
 
         event.preventDefault(); // prevents the form from contacting our server automatically (we want to do it ourselves)
-        var formActionUrl = form.action; // 'form.action' is the url '/create-post'
-        var formData = new FormData(form);
+        let formActionUrl = form.action; // 'form.action' is the url '/create-post'
+        let formData = new FormData(form);
 
         postBlogposts(formActionUrl, formData);
     });
@@ -22,14 +22,15 @@ function ready () {
 /****
  * Function definitions
  ***/
-function postBlogposts (url, data) {
+
+const postBlogposts = (url, data) => {
     fetch(url, {
         method: 'POST',
         body: data
     })
-    .then(function (res) {
+    .then( (res) => {
         res.json()
-            .then(function (json) {
+            .then( (json)=> {
                 console.log(json);
                 addBlogpostsToPage(json);
                 document.querySelector('form').reset();
@@ -40,7 +41,7 @@ function postBlogposts (url, data) {
     });
 }
 
-function getBlogposts (url) {
+const getBlogposts = (url) => {
     fetch(url, {
         method: 'GET'
     })
@@ -51,12 +52,12 @@ function getBlogposts (url) {
             addBlogpostsToPage(json);
         });
     })
-    .catch(function (err) {
+    .catch( (err)=> {
         console.error(err)
     });
 }
 
-function addBlogpostsToPage (data) {
+const addBlogpostsToPage = (data) => {
     for (var blogpost in data) {
         if (data.hasOwnProperty(blogpost)) {
 
