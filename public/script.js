@@ -61,7 +61,7 @@ const addBlogpostsToPage = (data) => {
     for (var blogpost in data) {
         if (data.hasOwnProperty(blogpost)) {
 
-            var postDiv         = document.createElement('div');
+            var postDiv      = document.createElement('div');
             var postText        = document.createElement('p');
             var thumbnail       = document.createElement('img');
             var postContainer   = document.querySelector('.post-container');
